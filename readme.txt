@@ -29,7 +29,7 @@ readme:
     - pretrained_word2vec.ipynb: 
         - TODO: embedding wiki pretrained models into word2vec model
     
-    - word2vec model training output:(using cnews data)
+    - word2vec model training output is stored in ** res/word2vec_pretrained_res ** ; this model was trained using cnews data:
         - word_vector_cnn.h5
         - word2vec.model: model can be loaded to train word2vec embedding of new documents
         - word2vec.model.trainables.syn1neg.npy: MISC
@@ -55,7 +55,7 @@ readme:
     - 【用户行为分析】 用wiki百科中文语料训练word2vec模型(https://blog.csdn.net/hereiskxm/article/details/49664845)
           
       
-    
+   
   
   
 
