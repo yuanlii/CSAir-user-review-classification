@@ -4,6 +4,24 @@ readme:
 
     Codes Explantion
     -----------------
+    (1) Python files:
+
+        - modeling.py:
+            - basic modeling code setup, functions include: get_precision, plot_confusion_matrix, get_clf_result, grid_search
+            - used with basic_pipeline_setup_v5.ipynb
+            
+        - prepare_data.py:
+            - load data; and split data into train, test set
+            - preprocess data: countvectorizer() for one-hot encoding and tf-idf transformer() to preprocess data
+            - get precision score by comparing y_pred and y_test
+            - used with basic_pipeline_setup_v5.ipynb
+        
+        - tokenization.py:
+            - used to tokenize Chinese text, including:
+                - including remove non-Chinese characters, stopwords, digits, and punctuations
+        
+        
+    (2) ipynb files:
     
         - basic_pipeline_setup_v4.ipynb:
             - update: split tokenization part into a separate python file 'tokenization.py', which can be imported directly
@@ -12,10 +30,17 @@ readme:
         - data_preprocessing.ipynb:
             - handles tokenization, merge data under different categories into one single file
             - tokenized result stored as'/res/all_labeled_data_v3.csv'
+        
+        - basic_pipeline_setup_v5.ipynb: (MOST RECENT)
+            - updated: manually adjust thresholds of sklearn predict function
+            - TODO: try different scoring metrics and pick the best one 
+            
+        - unlabeled_preprocess.ipynb: 
+            - data preprocess for unlabeled data
+            - Ongoing
+        
 
-        - tokenization.py:
-            - used to tokenize Chinese text, including:
-                - including remove non-Chinese characters, stopwords, digits, and punctuations
+    (3) word2vec files:
         
         - word2vec_pretrained folder contains codes focusing on using pretrained word2vec to build model
             - pretrained_word2vec.ipynb
@@ -25,7 +50,10 @@ readme:
                     - https://keras-cn-docs.readthedocs.io/zh_CN/latest/blog/word_embedding/ 
                     - https://github.com/keras-team/keras/blob/master/examples/pretrained_word_embeddings.py
                     
-       
+         - word2vec_v2.ipynb:
+            - TODO: try other methods
+                    
+
 
     Other Codes
     -----------
@@ -50,6 +78,11 @@ readme:
             - using countvectorizer() and tf-idf transformer() to construct word vectors
         
 
+    Data
+    ----
+    all_labeled_data(formatted).csv: 
+    - reformat original output data to "class","reviews" format
+  
 
 # codes can be deprecated or moved to archive: 
       - basic_pipeline_setup_v2.ipynb
