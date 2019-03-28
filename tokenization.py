@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 import re
 import glob
 import numpy as np
@@ -9,10 +8,8 @@ import jieba.posseg as pseg
 import jieba.analyse
 import warnings
 warnings.filterwarnings('ignore')
-os.chdir('/Users/liyuan/desktop/CSAir')
 
 class Tokenization():
-#     def __init__(self, input_data, output_name, stopwords):
     def __init__(self, input_path, output_name, stopwords):
         #self.input = input_data[:]
         self.input_path = input_path
@@ -41,12 +38,11 @@ class Tokenization():
             res = re.findall(re_words, tokenized_sent)
             if res:
                 valid_tokenized_sent = ' '.join([r for r in res])
-            self.sentences.append(valid_tokenized_sent)
+                self.sentences.append(valid_tokenized_sent)
         
         with open(self.output_name + '.txt','w',newline='') as output_file:
             for line in self.sentences:
                 output_file.write(line + '\n')  
- 
         return self.sentences
     
     def get_topN_tf_idf(self, content, topK=20):

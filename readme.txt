@@ -17,8 +17,19 @@ readme:
             - used with basic_pipeline_setup_v5.ipynb
         
         - tokenization.py:
-            - used to tokenize Chinese text, including:
-                - including remove non-Chinese characters, stopwords, digits, and punctuations
+            - used to tokenize Chinese text
+            - including remove non-Chinese characters, stopwords, digits, and punctuations
+                
+        - semi-supervise.py:
+            - functions include: load_labeled_data(),load_unlabeled_data(),concat_data(),get_X(), label_propagation()
+            - mainly referenced from sklearn semi-supervised package
+
+        - unlabeled_preprocess.py:
+            - preprocess unlabeled data
+            - sample unlabeled data
+
+        - word2vec.py:
+            - use pretrained word vectors to train labeled data
         
         
     (2) ipynb files:
@@ -36,9 +47,18 @@ readme:
             - TODO: try different scoring metrics and pick the best one 
             
         - unlabeled_preprocess.ipynb: 
-            - data preprocess for unlabeled data
-            - Ongoing
+            - sample unlabeled data (5000) and tokenized text
+            - output tokenized unlabeled data is stored under res/tokenized_sampled_unlabeled_reviews
         
+        - semi_supervised.ipynb: (MOST RECENT)
+            - main codes to implement semi-supervised learning using sklearn packages
+            - based on knn algorithm
+            - return a dataframe of unlabeled data with review tokens and predicted labels
+            - TODO: 
+                - idea: graph-based --> compute cosine similarity for each node (each node represent a user review)
+                - ideally would be better if can get original untokenized reviews and format into the output dataframe --> for CSAir to review manually
+
+
 
     (3) word2vec files:
         

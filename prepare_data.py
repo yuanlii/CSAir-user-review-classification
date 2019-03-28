@@ -31,7 +31,7 @@ class PrepareData():
     def preprocess_data(self):
         '''use countvectorizer and tf-idf transformer to get valid one-hot encoding for reviews'''
         # use countVectorizer for one-hot encoding
-        count_v0= CountVectorizer();  
+        count_v0= CountVectorizer()
         counts_all = count_v0.fit_transform(self.data['review_tokens'])
         count_v1= CountVectorizer(vocabulary=count_v0.vocabulary_)  
         counts_train = count_v1.fit_transform(self.train.review_tokens)
@@ -50,6 +50,7 @@ class PrepareData():
         y_train = self.train.label_encoded
         X_test = test_data
         y_test = self.test.label_encoded
+
         return X_train, y_train, X_test, y_test
     
     def get_labels_index(self):
