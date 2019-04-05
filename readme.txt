@@ -30,6 +30,10 @@ readme:
 
         - word2vec.py:
             - use pretrained word vectors to train labeled data
+
+        - modeling_main.py:
+            - combining modeling.py and prepare_data.py
+            - main code blocks for basic_pipeline_setup_v6.ipynb:
         
         
     (2) ipynb files:
@@ -43,14 +47,17 @@ readme:
             - tokenized result stored as'/res/all_labeled_data_v3.csv'
         
         - basic_pipeline_setup_v5.ipynb: (MOST RECENT)
-            - updated: manually adjust thresholds of sklearn predict function
-            - TODO: try different scoring metrics and pick the best one 
+            - updated: plot the probability distribution for each label
+            - updated: set probability threshold to be median probability of each class
+            - TODO: after getting the valid labels (meeting the prob. threshold for each class), how to handle one user review with multiple valid labels --> one thoughts: pick the label with the highest probability among all
+            - main codes are based on modeling.py
+            - more reference: Choosing Logisitic Regression’s Cutoff Value for Unbalanced Dataset(http://ethen8181.github.io/machine-learning/unbalanced/unbalanced.html)
             
         - unlabeled_preprocess.ipynb: 
             - sample unlabeled data (5000) and tokenized text
             - output tokenized unlabeled data is stored under res/tokenized_sampled_unlabeled_reviews
         
-        - semi_supervised.ipynb: (MOST RECENT)
+        - semi_supervised.ipynb: 
             - main codes to implement semi-supervised learning using sklearn packages
             - based on knn algorithm
             - return a dataframe of unlabeled data with review tokens and predicted labels
@@ -58,6 +65,10 @@ readme:
                 - idea: graph-based --> compute cosine similarity for each node (each node represent a user review)
                 - ideally would be better if can get original untokenized reviews and format into the output dataframe --> for CSAir to review manually
 
+        - set_manual_threshold.ipynb: (MOST RECENT)
+            - based on basic_pipeline_setup_v5.ipynb, organize codes: that allows you to pass on a modeling method, e.g., logisticRegression(), and get the classification results after manually setting predicted probability threshold
+            - combined in usage with modeling_main.py
+           
 
 
     (3) word2vec files:

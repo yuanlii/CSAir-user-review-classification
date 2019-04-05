@@ -17,6 +17,8 @@ class PrepareData():
         self.test = pd.DataFrame()
         self.labels_index = {}
         self.class_priors = {}
+        self.class_size = {}
+        self.threshold_dct = {}
 
     def load_data(self, file_path):
         self.data = pd.read_csv(file_path)
@@ -35,11 +37,11 @@ class PrepareData():
         counts_all = count_v0.fit_transform(self.data['review_tokens'])
         count_v1= CountVectorizer(vocabulary=count_v0.vocabulary_)  
         counts_train = count_v1.fit_transform(self.train.review_tokens)
-        print ("the shape of train word vectors is "+repr(counts_train.shape))
+        # print ("the shape of train word vectors is "+repr(counts_train.shape))
 
         count_v2 = CountVectorizer(vocabulary=count_v0.vocabulary_)
         counts_test = count_v2.fit_transform(self.test.review_tokens)
-        print ("the shape of test word vectors is "+repr(counts_test.shape))
+        # print ("the shape of test word vectors is "+repr(counts_test.shape))
 
         # implement tf-idf
         tfidftransformer = TfidfTransformer()
@@ -75,4 +77,26 @@ class PrepareData():
         precision = float(num) / len(y_pred)
         print('precision: '+'{:.2f}'.format(precision))
         return precision
+
+    def get_class_size(self):
+        '''get a dictionary: key -> label, value -> datasize related to this label '''
+        for i in range(10):
+            self.class_size[i] = len(self.data[self.data['label_encoded']== i])
+        return self.class_size
+
+    
+    def get_class_threshold(self, prob_scores):
+        '''use class_priors are percentile for each class label '''
+        # there are 10 class in total
+        for i in range(10):
+            # col = 1 represent 'positive'
+            # first index represents the class, e.g., prob_scores[0][:,1] -> prob. when labeled as class 0 for each review
+            class_prob = prob_scores[i][:,1] 
+            # get the higher bound percentile
+            percentile = (1 - self.class_priors[i])*100
+            threshold = np.percentile(class_prob, percentile) 
+            self.threshold_dct[i] = threshold
+        return self.threshold_dct
+
+
    

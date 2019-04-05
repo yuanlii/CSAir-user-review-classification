@@ -8,6 +8,9 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
+from sklearn.multioutput import MultiOutputClassifier
+import keras
+from keras.utils import to_categorical
 
 import pandas as pd
 import os
@@ -19,6 +22,7 @@ import jieba
 import jieba.posseg as pseg
 import jieba.analyse
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 class Modeling():
     def __init__(self,X_train, y_train, X_test, y_test):
@@ -26,6 +30,10 @@ class Modeling():
         self.y_train = y_train
         self.X_test = X_test
         self.y_test = y_test
+        # define a dictionary, key --> class, values --> class labels that meet the prob. threshold
+        self.label_lst = {}
+        self.review_labels = {}
+        
         
     def get_precision(self,y_pred):
         '''this function returns a precision score for the model'''
@@ -115,6 +123,62 @@ class Modeling():
         clf.fit(self.X_train, self.y_train)
         print('best parameters of clf are: ')
         return clf.best_params_
-    
 
+    # updated: 03/30/2019
+    def get_label_prob(self, model):
+        '''plot probability distribution for each label'''
+        # y need to be converted to matrix
+        y_train_transformed = to_categorical(self.y_train, dtype='float32')
+        y_test_transformed = to_categorical(self.y_test, dtype='float32')
+
+        # modeling --> get probability score for each label  
+        multi_target_clf = MultiOutputClassifier(model, n_jobs=-1)
+        multi_target_clf.fit(self.X_train, y_train_transformed)
+        scores = multi_target_clf.predict_proba(self.X_test)
+        
+        print('there are %d classes'%len(scores))
+        # probability of predicting as class i (0~9) (per review)
+        plt.figure(figsize = (10,8))
+        for i in range(len(scores)):
+            plt.subplot(4, 3, i+1)
+            plt.subplots_adjust(top = 0.99, bottom=0.1, hspace=0.5, wspace=0.3)
+            # 0 means not predicted as this label; and 1 means predicted as this label, which is what we care about
+            prob_class = scores[i][:,1]
+            sns.distplot(prob_class)
+            plt.title('prob. distribution of class %d'%i)
+        return scores
+
+    # each label can be treated as a binary prediction problem: each can compute precision, recall, f1-score accordingly
+        # can be referenced: http://ethen8181.github.io/machine-learning/unbalanced/unbalanced.html
+    # TODO: reference from classification report below, add confusion matrix (tp,fp,fn,fp) as a new column
+
+    def gen_label_dct(self,scores,threshold_dct):
+        '''generate label for each review based on probability and threshold;
+        return a dictionary, key: class, value: list of 0-1 labels; 0 means not labeling, 1 means labeling, e.g., {0:[0,1,1,0,0,1,...], 1:[0,0,1,1,0,...], ...} '''
+        # there are 10 classes in total
+        class_label_dct = {}
+        for i in range(10):
+            class_labels = []
+            for score in scores[i][:,1]:
+                if score > threshold_dct[i]:
+                    label = 1
+                else:
+                    label = 0
+                class_labels.append(label)
+            class_label_dct[i] = class_labels
+        return class_label_dct
     
+    def map_label_to_review(self, class_label_dct):
+        '''get a dictionary listing the class number as keys, and the list of review indices that are classified as high probability '''
+        class_reviews_dct = {}
+        for i in range(10):
+            # extract indices where label = 1
+            class_reviews = [ idx for idx in range(len(class_label_dct[i])) if class_label_dct[i][idx] == 1  ]        
+            class_reviews_dct[i] = class_reviews
+        return class_reviews_dct
+
+
+    # TODO:
+    def get_precision(self):
+        pass
+
