@@ -169,7 +169,7 @@ class Modeling():
         return class_label_dct
     
     def map_label_to_review(self, class_label_dct):
-        '''get a dictionary listing the class number as keys, and the list of review indices that are classified as high probability '''
+        '''get a dictionary listing the class number as keys, and the list of review indices that are classified as high probability; from this step, only extract indices by the position in test data, not the original user review index in the entire dataset '''
         class_reviews_dct = {}
         for i in range(10):
             # extract indices where label = 1

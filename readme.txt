@@ -65,11 +65,22 @@ readme:
                 - idea: graph-based --> compute cosine similarity for each node (each node represent a user review)
                 - ideally would be better if can get original untokenized reviews and format into the output dataframe --> for CSAir to review manually
 
-        - set_manual_threshold.ipynb: (MOST RECENT)
+        - set_manual_threshold_v2.ipynb: 
             - based on basic_pipeline_setup_v5.ipynb, organize codes: that allows you to pass on a modeling method, e.g., logisticRegression(), and get the classification results after manually setting predicted probability threshold
             - combined in usage with modeling_main.py
-           
-
+         
+        # updated: 04/09/2019
+        - set_manual_threshold_v3.ipynb: (MOST RECENT)
+            - updated: rewrite functions in set_manual_threshold_v2 into an entire function
+            - can pass on: Logistic regression, Naive Bayes 
+        
+        
+        # updated: 04/08/2019
+        - process_raw_labeled_data.ipynb:
+            - based on process_labeled_data.py 
+            - used for process raw labeled data from beginning (10 class csv files) to end
+            - output data: all_raw_labeled_data.csv (not seperate & tokenize review)
+        
 
     (3) word2vec files:
         
@@ -113,6 +124,12 @@ readme:
     ----
     all_labeled_data(formatted).csv: 
     - reformat original output data to "class","reviews" format
+    
+    ../res/labels_predicted_lg.csv:
+    - logistic regression after manually setting proba threshold 
+    
+    ../res/labeled_data_with_without_tk.csv
+    - include review, review_tokenized, label, label_encoded 
   
 
 # codes can be deprecated or moved to archive: 

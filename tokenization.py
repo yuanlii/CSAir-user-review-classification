@@ -6,8 +6,6 @@ import time
 import jieba
 import jieba.posseg as pseg
 import jieba.analyse
-import warnings
-warnings.filterwarnings('ignore')
 
 class Tokenization():
     def __init__(self, input_path, output_name, stopwords):

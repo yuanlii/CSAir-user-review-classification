@@ -22,6 +22,8 @@ class PrepareData():
 
     def load_data(self, file_path):
         self.data = pd.read_csv(file_path)
+        # updated: drop na values
+        self.data = self.data.dropna()
         return self.data
     
     def split_data(self):
@@ -63,6 +65,7 @@ class PrepareData():
     
     def get_class_priors(self):
         # get the class_prior for each label
+        # class_prior = class_size / data_size
         for i in range(10):
             self.class_priors[i] = len(self.data[self.data['label_encoded']== i]) / len(self.data)
         return self.class_priors
