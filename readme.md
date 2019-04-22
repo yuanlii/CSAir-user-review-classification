@@ -1,6 +1,6 @@
-readme: 
-    
-    This project is working to classify user reviews into 10 different categories.
+# Multi-class classification for flight user reviews
+
+This project is working to classify user reviews into 10 different categories.
 
     Codes Explantion
     -----------------
