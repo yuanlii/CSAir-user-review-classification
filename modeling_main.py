@@ -52,7 +52,9 @@ class ReviewClassify(object):
         # part2: modeling
         # funcitons below should return different results when passing on different models
         m = Modeling(X_train, y_train, X_test, y_test)
-        self.prob_scores = m.get_label_prob(self.model)
+        # updated: using multiclass classifier (one vs. rest) instead of multi-label classifieri n sklearn (04/17/2019)
+        # self.prob_scores = m.get_label_prob(self.model)
+        self.prob_scores = m.get_label_prob_updated(self.model)
         self.threshold_dct = data_p.get_class_threshold(self.prob_scores)
         # generate label based on threshold of each class
         self.class_label_dct = m.gen_label_dct(self.prob_scores,self.threshold_dct)

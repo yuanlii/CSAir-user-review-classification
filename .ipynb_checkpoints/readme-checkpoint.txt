@@ -46,12 +46,13 @@ readme:
             - handles tokenization, merge data under different categories into one single file
             - tokenized result stored as'/res/all_labeled_data_v3.csv'
         
-        - basic_pipeline_setup_v5.ipynb: (MOST RECENT)
+        - basic_pipeline_setup_v5.ipynb: 
             - updated: plot the probability distribution for each label
             - updated: set probability threshold to be median probability of each class
             - TODO: after getting the valid labels (meeting the prob. threshold for each class), how to handle one user review with multiple valid labels --> one thoughts: pick the label with the highest probability among all
             - main codes are based on modeling.py
             - more reference: Choosing Logisitic Regression’s Cutoff Value for Unbalanced Dataset(http://ethen8181.github.io/machine-learning/unbalanced/unbalanced.html)
+
             
         - unlabeled_preprocess.ipynb: 
             - sample unlabeled data (5000) and tokenized text
@@ -63,24 +64,23 @@ readme:
             - return a dataframe of unlabeled data with review tokens and predicted labels
             - TODO: 
                 - idea: graph-based --> compute cosine similarity for each node (each node represent a user review)
-                - ideally would be better if can get original untokenized reviews and format into the output dataframe --> for CSAir to review manually
-
-        - set_manual_threshold_v2.ipynb: 
-            - based on basic_pipeline_setup_v5.ipynb, organize codes: that allows you to pass on a modeling method, e.g., logisticRegression(), and get the classification results after manually setting predicted probability threshold
-            - combined in usage with modeling_main.py
-         
-        # updated: 04/09/2019
+                - ideally would be better if can get original untokenized reviews and format into the output dataframe --> for CSAir to review manually            
+            
+         - set_manual_threshold_v5.1.ipynb: (MOST RECENT)
+            - based on basic_pipeline_setup_v5.ipynb and modeling_main.py
+            - updated: 
+                a. use one vs.rest multiclass classifier in sklearn
+                b. add confusion matrix with tp, tn, fp, fn values
+            
         - set_manual_threshold_v3.ipynb: (MOST RECENT)
             - updated: rewrite functions in set_manual_threshold_v2 into an entire function
             - can pass on: Logistic regression, Naive Bayes 
         
-        
-        # updated: 04/08/2019
         - process_raw_labeled_data.ipynb:
             - based on process_labeled_data.py 
             - used for process raw labeled data from beginning (10 class csv files) to end
-            - output data: all_raw_labeled_data.csv (not seperate & tokenize review)
-        
+            - output data: labeled_data_with_without_tk.csv
+
 
     (3) word2vec files:
         

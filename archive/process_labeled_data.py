@@ -22,9 +22,11 @@ class ProcessLabeledData(object):
         self.all_raw_labeled_data = self.all_raw_labeled_data.rename(columns = {0:'review'})
         return self.all_raw_labeled_data
 
+    
+
     def encode_labeled_data(self, output_data_file):
         ''' encode classes (text) into digits; 
-            return a df with '''
+            return a df with reviews, label_encoded '''
         le = preprocessing.LabelEncoder()
         targets = le.fit_transform(self.all_raw_labeled_data.label)
         self.all_raw_labeled_data['label_encoded'] = targets

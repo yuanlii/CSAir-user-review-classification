@@ -9,6 +9,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 from sklearn.multioutput import MultiOutputClassifier
+from sklearn.multiclass import OneVsRestClassifier
 import keras
 from keras.utils import to_categorical
 
@@ -23,6 +24,7 @@ import jieba.posseg as pseg
 import jieba.analyse
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pandas_ml import ConfusionMatrix
 
 class Modeling():
     def __init__(self,X_train, y_train, X_test, y_test):
@@ -33,7 +35,6 @@ class Modeling():
         # define a dictionary, key --> class, values --> class labels that meet the prob. threshold
         self.label_lst = {}
         self.review_labels = {}
-        
         
     def get_precision(self,y_pred):
         '''this function returns a precision score for the model'''
@@ -62,16 +63,12 @@ class Modeling():
 
         # Compute confusion matrix
         cm = confusion_matrix(self.y_test, y_pred)
-        # Only use the labels that appear in the data
-        # classes = classes[unique_labels(y_true, y_pred)]
         if normalize:
             cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
             print("Normalized confusion matrix")
         else:
             print('Confusion matrix, without normalization')
-
-        # print(cm)
-
+        
         fig, ax = plt.subplots()
         im = ax.imshow(cm, interpolation='nearest', cmap=cmap)
         ax.figure.colorbar(im, ax=ax)
@@ -99,6 +96,12 @@ class Modeling():
         fig.tight_layout()
         return ax
     
+    # updated: 04/11/2019
+    def get_confusion_matrix(self,y_pred):
+        '''get tp,tn,fp,fn for each class'''
+        cm = ConfusionMatrix(self.y_test, y_pred)
+        cm.print_stats()
+
     
     def get_clf_result(self,model):
         clf = model   
@@ -112,6 +115,7 @@ class Modeling():
         # print(cm)
         plt.figure()
         self.plot_confusion_matrix(y_pred)
+        self.get_confusion_matrix(y_pred)
         
         # use precision as evaluation metrics
         precision = self.get_precision(y_pred)
@@ -150,7 +154,35 @@ class Modeling():
 
     # each label can be treated as a binary prediction problem: each can compute precision, recall, f1-score accordingly
         # can be referenced: http://ethen8181.github.io/machine-learning/unbalanced/unbalanced.html
-    # TODO: reference from classification report below, add confusion matrix (tp,fp,fn,fp) as a new column
+
+    
+    # updated: 04/17/2019
+    def get_label_prob_updated(self, model):
+        '''plot probability distribution for each label;
+        updated: is to use OneVsRestClassifier() instead of MultiOutputClassifier()'''
+        # y need to be converted to matrix
+        y_train_transformed = to_categorical(self.y_train, dtype='float32')
+        y_test_transformed = to_categorical(self.y_test, dtype='float32')
+
+        # modeling --> get probability score for each label  
+        # multi_target_clf = MultiOutputClassifier(model, n_jobs=-1)
+        multi_class_clf = OneVsRestClassifier(model, n_jobs=-1)
+        multi_class_clf.fit(self.X_train, y_train_transformed)
+        scores = multi_class_clf.predict_proba(self.X_test)
+        
+        print('there are %d classes'%len(scores))
+        # probability of predicting as class i (0~9) (per review)
+        plt.figure(figsize = (10,8))
+        for i in range(len(scores)):
+            plt.subplot(4, 3, i+1)
+            plt.subplots_adjust(top = 0.99, bottom=0.1, hspace=0.5, wspace=0.3)
+            # 0 means not predicted as this label; and 1 means predicted as this label, which is what we care about
+            prob_class = scores[i][:,1]
+            sns.distplot(prob_class)
+            plt.title('prob. distribution of class %d'%i)
+        return scores
+
+
 
     def gen_label_dct(self,scores,threshold_dct):
         '''generate label for each review based on probability and threshold;
@@ -178,7 +210,5 @@ class Modeling():
         return class_reviews_dct
 
 
-    # TODO:
-    def get_precision(self):
-        pass
+    
 
