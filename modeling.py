@@ -183,7 +183,6 @@ class Modeling():
         return scores
 
 
-
     def gen_label_dct(self,scores,threshold_dct):
         '''generate label for each review based on probability and threshold;
         return a dictionary, key: class, value: list of 0-1 labels; 0 means not labeling, 1 means labeling, e.g., {0:[0,1,1,0,0,1,...], 1:[0,0,1,1,0,...], ...} '''

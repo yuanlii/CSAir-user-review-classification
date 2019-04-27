@@ -53,7 +53,7 @@ readme:
             - main codes are based on modeling.py
             - more reference: Choosing Logisitic Regression’s Cutoff Value for Unbalanced Dataset(http://ethen8181.github.io/machine-learning/unbalanced/unbalanced.html)
 
-            
+        
         - unlabeled_preprocess.ipynb: 
             - sample unlabeled data (5000) and tokenized text
             - output tokenized unlabeled data is stored under res/tokenized_sampled_unlabeled_reviews
@@ -66,13 +66,13 @@ readme:
                 - idea: graph-based --> compute cosine similarity for each node (each node represent a user review)
                 - ideally would be better if can get original untokenized reviews and format into the output dataframe --> for CSAir to review manually            
             
-         - set_manual_threshold_v5.1.ipynb: (MOST RECENT)
+         - set_manual_threshold_v5.1.ipynb: 
             - based on basic_pipeline_setup_v5.ipynb and modeling_main.py
             - updated: 
                 a. use one vs.rest multiclass classifier in sklearn
                 b. add confusion matrix with tp, tn, fp, fn values
             
-        - set_manual_threshold_v3.ipynb: (MOST RECENT)
+        - set_manual_threshold_v3.ipynb: 
             - updated: rewrite functions in set_manual_threshold_v2 into an entire function
             - can pass on: Logistic regression, Naive Bayes 
         
@@ -80,7 +80,9 @@ readme:
             - based on process_labeled_data.py 
             - used for process raw labeled data from beginning (10 class csv files) to end
             - output data: labeled_data_with_without_tk.csv
-
+    
+        - multi_class_classification.ipynb:
+            - based on set_manual_threshold_v5.1.ipynb
 
     (3) word2vec files:
         
@@ -95,8 +97,8 @@ readme:
          - word2vec_v2.ipynb: (Most recent)
             - method: use pretrained word2vec 百度百科 + CNN
             - performance: not good, based on metrics of [accuracy] and [confusion matrix]
+        
                     
-
     Other Codes
     -----------
         - bag_of_words+NN.ipynb:
@@ -118,7 +120,8 @@ readme:
             - update version of code pipeline 
             - adding more NLP for data preprocessing, e.g. remove stopwords, non-Chinese characters, etc.
             - using countvectorizer() and tf-idf transformer() to construct word vectors
-        
+
+
 
     Data
     ----

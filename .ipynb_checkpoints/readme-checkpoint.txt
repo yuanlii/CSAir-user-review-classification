@@ -92,10 +92,10 @@ readme:
                     - https://keras-cn-docs.readthedocs.io/zh_CN/latest/blog/word_embedding/ 
                     - https://github.com/keras-team/keras/blob/master/examples/pretrained_word_embeddings.py
                     
-         - word2vec_v2.ipynb:
-            - TODO: try other methods
+         - word2vec_v2.ipynb: (Most recent)
+            - method: use pretrained word2vec 百度百科 + CNN
+            - performance: not good, based on metrics of [accuracy] and [confusion matrix]
                     
-
 
     Other Codes
     -----------
@@ -118,6 +118,9 @@ readme:
             - update version of code pipeline 
             - adding more NLP for data preprocessing, e.g. remove stopwords, non-Chinese characters, etc.
             - using countvectorizer() and tf-idf transformer() to construct word vectors
+
+        - multi_class_classification.ipynb:
+            - based on set_manual_threshold_v5.1.ipynb
         
 
     Data
