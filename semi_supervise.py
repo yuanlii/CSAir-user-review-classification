@@ -6,6 +6,7 @@ import json
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer 
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.semi_supervised import label_propagation
+from sklearn.utils import shuffle
 
 from tokenization import Tokenization
 from prepare_data import PrepareData
@@ -21,12 +22,13 @@ class Semi_Supervise():
     def load_labeled_data(self, labeled_data_path):
         data_p = PrepareData()
         self.labeled_data = data_p.load_data(labeled_data_path)
-        self.labeled_data = self.labeled_data[['review_tokens','label_encoded']]
+        # re-organize the columns of df
+        self.labeled_data = self.labeled_data[['review','review_tokens','label','label_encoded']]
         print('there are %d examples in labeled dataset'%len(self.labeled_data))
         return self.labeled_data
 
     def load_unlabeled_data(self, unlabeled_data_path):
-        # load unlabeled data
+        '''load unlabeled data(in txt format)'''
         unlabeled_lst = []
         with open(unlabeled_data_path, 'r', encoding='utf-8') as input_file:
             unlabeled_lst +=  input_file.readlines()
@@ -37,9 +39,23 @@ class Semi_Supervise():
         self.unlabeled_data = pd.DataFrame(d)
         return self.unlabeled_data
 
+    def load_unlabeled_data_csv(self, unlabeled_data_path):
+        '''load unlabeled data (in csv format'''
+        data_p = PrepareData()
+        self.unlabeled_data = data_p.load_data(unlabeled_data_path)
+        # add rows of 'label' and 'label_encoded
+        self.unlabeled_data['label'] = 'N/A'
+        self.unlabeled_data['label_encoded'] = np.nan
+        return self.unlabeled_data
+    
     def concat_data(self):
         '''concatenate labeled and unlabeled data'''
         self.data_concat = pd.concat([self.labeled_data, self.unlabeled_data],ignore_index=True)
+        self.data_concat = self.data_concat[['review','review_tokens','label','label_encoded']]
+        # shuffle concatenated data
+        self.data_concat = shuffle(self.data_concat, random_state = 0)
+        # reset index
+        self.data_concat = self.data_concat.reset_index(drop=True)
         return self.data_concat
 
     def get_X(self):
@@ -62,7 +78,8 @@ class Semi_Supervise():
         y = self.data_concat.label_encoded.values
 
         n_total_samples = len(y)
-        n_labeled_points = 1700
+        # n_labeled_points = 1700
+        n_labeled_points = len(self.labeled_data)
 
         indices = np.arange(n_total_samples)
         unlabeled_set = indices[n_labeled_points:]

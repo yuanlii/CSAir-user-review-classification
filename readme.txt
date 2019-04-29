@@ -19,6 +19,7 @@ readme:
         - tokenization.py:
             - used to tokenize Chinese text
             - including remove non-Chinese characters, stopwords, digits, and punctuations
+            - TODO: need to fix
                 
         - semi-supervise.py:
             - functions include: load_labeled_data(),load_unlabeled_data(),concat_data(),get_X(), label_propagation()
@@ -83,6 +84,8 @@ readme:
     
         - multi_class_classification.ipynb:
             - based on set_manual_threshold_v5.1.ipynb
+            - build classifier for each label class, by manually setting probability threshold
+            
 
     (3) word2vec files:
         
@@ -97,6 +100,8 @@ readme:
          - word2vec_v2.ipynb: (Most recent)
             - method: use pretrained word2vec 百度百科 + CNN
             - performance: not good, based on metrics of [accuracy] and [confusion matrix]
+            
+                
         
                     
     Other Codes
@@ -122,6 +127,13 @@ readme:
             - using countvectorizer() and tf-idf transformer() to construct word vectors
 
 
+    Recent Codes
+    -----------
+        - unlabeled_preprocess_v2.ipynb: (created: 04/29/2019)
+            - have tried clustering => not very well cluster into 10 class labels
+            - TODO: try word2vec embedding and other embedding methods
+    
+    
 
     Data
     ----
@@ -133,6 +145,9 @@ readme:
     
     ../res/labeled_data_with_without_tk.csv
     - include review, review_tokenized, label, label_encoded 
+    
+    ../res/unlabeled_review_5000.csv
+    - fix different length of pre-tokenization and post-tokenization => referencing from tokenization.py
   
 
 # codes can be deprecated or moved to archive: 
