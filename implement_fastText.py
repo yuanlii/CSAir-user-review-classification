@@ -1,5 +1,9 @@
-import numpy as np
 import pandas as pd
+import numpy as np
+import random
+import os
+os.chdir('/Users/liyuan/desktop/CSAir/codes')
+import fastText 
 
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
@@ -16,38 +20,47 @@ from imblearn.over_sampling import SMOTE
 from sklearn.metrics import confusion_matrix
 from pandas_ml import ConfusionMatrix
 
-class word2vec():
+from semi_supervise import Semi_Supervise
+
+# ---- prepare data from user reviews to train FastText model ----
+# load data
+ss = Semi_Supervise()
+labeled_data = ss.load_labeled_data('../res/labeled_data_with_without_tk.csv')
+# load unlabeled data
+# unlabeled_data = ss.load_unlabeled_data_csv('../res/unlabeled_review_5000.csv')
+
+# load more unlabeled data ..
+unlabeled_data = ss.load_unlabeled_data_csv('../res/unlabeled_review_反馈数据.csv')
+# concatenate labeled and unlabeled data
+data_concat = ss.concat_data()
+data_concat.head()
+
+# output data to txt file => data would be feed into fasttext
+train_data = data_concat.review_tokens
+train_data.to_csv('../res/sampled_data_fasttext.txt', index = False)
+
+# Finished: locally train fasttext using labeled + unlabeled data (5000)
+# use command below to locally train skip-gram fasttext model: 
+# ./fasttext skipgram -input ../fasttext_train_data/sampled_data_fasttext.txt -output ../fasttext_train_data/model
+
+# train cbow version:
+# ./fasttext cbow -input ../fasttext_train_data/sampled_data_fasttext.txt -output ../fasttext_train_data/model_cbow
+
+
+class fasttext():
     def __init__(self):
         self.embeddings_index = {}
         self.MAX_SEQUENCE_LENGTH = 1000
         self.MAX_NUM_WORDS = 20000
         self.EMBEDDING_DIM = 300
         self.VALIDATION_SPLIT = 0.2
-        self.all_labeled_data = pd.DataFrame()
         self.labels_index = {}
         self.word_index  = {}
-        self.texts = np.array([])
-        self.labels = np.array([])
-        self.data = np.array([])
-        self.X_train = np.array([])
-        self.y_train = np.array([])
-        self.X_val = np.array([])
-        self.y_val = np.array([])
-        self.embedding_matrix = np.array([])
-        # output is the vectorized predicted output (one-hot encoding of predicted label)
-        self.output = np.array([])
-
-    def load_pretrained_vectors(self, file_path):
-        f = open(file_path)
-        for line in f:
-            values = line.split()
-            word = values[0]
-            coefs = np.asarray(values[1:], dtype='float32')
-            self.embeddings_index[word] = coefs
-        f.close()
-        print('Found %s word vectors.' % len(self.embeddings_index))
-        return self.embeddings_index 
-
+    
+    def load_pretrained_model(self, model_path):
+        model_pretrained = fastText.load_model(model_path) 
+        return model_pretrained
+    
     def prepare_data(self,data_file_path):
         self.all_labeled_data = pd.read_csv(data_file_path)
         self.texts = self.all_labeled_data.review_tokens.astype('str').values
@@ -85,7 +98,6 @@ class word2vec():
         self.X_val = self.data[-nb_validation_samples:]
         self.y_val = self.labels[-nb_validation_samples:]
         return  self.X_train, self.y_train, self.X_val, self.y_val
-    
     
     def get_embedding_matrix(self):
         # 据得到的字典生成上文所定义的词向量矩阵
@@ -206,4 +218,32 @@ class word2vec():
         # fit model based on new data set
         predicted_label_list = self.train_data(X_train_sm,y_train_sm,X_val,y_val)
         return predicted_label_list
-        
+    
+
+    ft = fasttext()
+    # model = ft.load_pretrained_model('fasttext_train_data/model.bin')
+    # model = ft.load_pretrained_model('fasttext_train_data/model_cbow.bin')
+
+    # load pretrained from official site ..
+    model = ft.load_pretrained_model('../Source_Data/cc.zh.300.bin')
+
+
+    # get more model methods
+    print('dimention of word vector:',model.get_dimension())
+    # load word vector
+    model.get_word_vector('航班').astype('float32')
+
+
+    X_train, y_train, X_val, y_val = ft.prepare_data('../res/labeled_data_with_without_tk.csv')
+
+    predicted_label_list = ft.train_data(X_train,y_train,X_val,y_val)
+
+    # check label index
+    print('label encoding dictionary:', ft.labels_index)
+
+    val_df = ft.incorporate_pred_label()
+    val_df = ft.map_label(val_df,predicted_label_list)
+    val_df.head()
+
+    # evaluate performance
+    ft.evaluate_performance(val_df)
