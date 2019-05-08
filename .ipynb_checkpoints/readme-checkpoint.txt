@@ -19,7 +19,6 @@ readme:
         - tokenization.py:
             - used to tokenize Chinese text
             - including remove non-Chinese characters, stopwords, digits, and punctuations
-            - TODO: need to fix
                 
         - semi-supervise.py:
             - functions include: load_labeled_data(),load_unlabeled_data(),concat_data(),get_X(), label_propagation()
@@ -108,18 +107,12 @@ readme:
     -----------
         - bag_of_words+NN.ipynb:
             - using one-hot encoding and build basic neural network to train 
-            - TODO: one-hot encoding process has updated, and so does data preprocessing stage; may need to modify accordingly
-
-        - check duplication.ipynb:
-            - check if duplication exists in multiple classes; if true, then may consider soft classification 
-            
-        - process_wiki.py:
-            - process wiki Chinese text recourses, and get pre-trained txt file as "Source_Data/wiki.zh.txt"
+            - one-hot encoding process has updated, and so does data preprocessing stage; may need to modify accordingly
 
         - unlabeled_preprocess.ipynb:
             - rewrite tokenization preprocessing into class
             - sampled 5000 unlabeled examples from second batch data
-            - TODO: combine labeled data and unlabeled data to build corpus for countervectorizer() and tf-idf transformer()
+            - combine labeled data and unlabeled data to build corpus for countervectorizer() and tf-idf transformer()
 
          - basic_pipeline_setup_v3.ipynb:
             - update version of code pipeline 
@@ -131,7 +124,13 @@ readme:
     -----------
         - unlabeled_preprocess_v2.ipynb: (created: 04/29/2019)
             - have tried clustering => not very well cluster into 10 class labels
-            - TODO: try word2vec embedding and other embedding methods
+        
+        - multiClass_classification folder:
+            - build 10 different classifiers for each label class
+            - applied supervised methods such as SVC, Logistic Regression, XGBoost, etc.
+            
+        - set_manual_threshold folder:
+            - applied vectorized method to build one classifier to handle multiclass classification
     
     
 

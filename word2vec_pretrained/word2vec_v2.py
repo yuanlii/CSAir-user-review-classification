@@ -91,9 +91,9 @@ class word2vec():
     def get_embedding_matrix(self):
         # 据得到的字典生成上文所定义的词向量矩阵
         # initialize as 0
-        # embedding_matrix = np.zeros((len(self.word_index) + 1, self.EMBEDDING_DIM))
+        embedding_matrix = np.zeros((len(self.word_index) + 1, self.EMBEDDING_DIM))
         # updated: randomly initialize weights
-        embedding_matrix = np.random.randn(len(self.word_index) + 1, self.EMBEDDING_DIM)* 0.01
+        # embedding_matrix = np.random.randn(len(self.word_index) + 1, self.EMBEDDING_DIM)* 0.01
         
         for word, i in self.word_index.items():
             embedding_vector = self.embeddings_index.get(word)

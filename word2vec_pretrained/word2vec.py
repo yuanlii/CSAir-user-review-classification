@@ -82,6 +82,8 @@ class word2vec():
         self.X_val = self.data[-nb_validation_samples:]
         self.y_val = self.labels[-nb_validation_samples:]
         return  self.X_train, self.y_train, self.X_val, self.y_val
+
+    
     
     def train_data(self):
         # 据得到的字典生成上文所定义的词向量矩阵
