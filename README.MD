@@ -30,10 +30,10 @@ where pi(x) is the density for each of the N classes.
 
 ### 1. vectorized method
 * use scikit learn multiclass classifier to directly predict for 10 class labels
-* TODO: more explanation
+* instead of predicting each review a label, this approach would output a vector with probability predicted of each label class for each review; this method is efficient especially when class labels are quite a few
 
 ### 2. One-vs-All Classification
-* Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. 
+* Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. This method may not be as efficient as the vectorized method, yet it provides more flexibility in modeling individual label classes.
 
 ![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_screenshot.png)
 
