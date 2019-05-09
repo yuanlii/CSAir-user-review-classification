@@ -7,7 +7,7 @@ User experience has been a cruicial part in contributing to a company's success.
 ## Supervised Learning
 
 Overall, for multiclass classification problem in general, suppose we have N classes, for each of the N classes, we would want to predict using 
-    $$f(x) = arg max pi(x). i∈1,...,N
+    ![multiclass classification formula](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification_formula.png)
 
 
 1. vectorized method
