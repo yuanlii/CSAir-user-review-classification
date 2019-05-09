@@ -9,11 +9,16 @@ User experience has been a cruicial part in contributing to a company's success.
 * data cleaning: remove non-Chinese characters, stopwords, digits, and punctuations
 * Chinese word segmentation: used [jieba](https://github.com/fxsjy/jieba) for segmentation of Chinese words, e.g.,
   我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学
+* exploratory data analysis: distribution among the 10 labels, we can tell certain unbalance exists
+
+![labeled_data_dist](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/labeled_data_dist.png)
+
 
 
 ### Bag of words + TF-idf transformer
 * Implemented Bag-of-Words: convert user reviews into one-hot encoding using countvectorizer() and TF-IDF transformation
 * Split user review data into training and test set
+
 
 ## Supervised Learning
 
