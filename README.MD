@@ -67,13 +67,12 @@ First we would compute and get "class priors" - ratios of size of each label cla
 
 ![manual_threshold](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/prob_dict_class1_manual.jpg)
 
-code extractions:
+code extractions for manually setting threshold:
 
 ``` python
 percentile = (1 - self.class_priors[i])*100
 threshold = np.percentile(class_prob, percentile) 
 ```
-
 
 
 ## word-embedding + word2vec
@@ -86,7 +85,7 @@ threshold = np.percentile(class_prob, percentile)
   * used Relu activation for multiple layers in CNN, and softmax activation for the last layer since we have more than 2 classes to classify
   * used categorical_crossentropy as loss function
 
-code extractions:
+code extractions for manually setting probability threshold: (more to see in prepare_data.py)
 
 ```python
 def setup_neural_net(self):
