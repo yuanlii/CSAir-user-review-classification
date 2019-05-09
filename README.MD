@@ -24,8 +24,7 @@ where pi(x) is the density for each of the N classes.
 * TODO: building classifier for each class
   * use Grid Search and Cross Validation for model selection
    * single modeling method + multiple hyperparameter tuning (with demonstrative best performance for each label class); an example is shown below, in which I chose SVC for modeling method.
-
-![CV best params for SVC](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_crossvalidation_best_params.png)
+   ![CV best params for SVC](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_crossvalidation_best_params.png)
 
 After building classifier for each class, I stacked the predicted probability horizontally (column-wise). P(X,Y) is the predicted probability of review X being classified in class Y, e.g, P(0,0) is the predicted probability of review 0 being classified in class 0 (in this case, "计划“）
 
