@@ -20,7 +20,7 @@ User experience has been a cruicial part in contributing to a company's success.
 * Split user review data into training and test set
 
 
-## Supervised Learning (Build Classifier)
+## Build Classifier using supervised method
 
 Overall, for multiclass classification problem in general, suppose we have N classes, for each of the N classes, we would want to predict using 
 
