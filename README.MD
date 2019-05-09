@@ -5,11 +5,15 @@
 User experience has been a cruicial part in contributing to a company's success. Partnered with China Southern Airline, we aim to build a auto-classifier that can successfully classify user reviews into 10 differernt labels, which are associated with different functional teams of the company. User reviews for this project are collected across a wide range of digital platforms, including iOS app store, Google Play App, Huawei App store as well as user reviews collected directly from its own released app. Classifiers built for this project will be integrated into the company's operation, in order to gain better understanding of customer needs and provide insights for the company's next step improvement.
 
 ### Data Preprocessing
-* TODO
+* loaded user review data from separate txt files, and concatenated them into one single data file
+* data cleaning: remove non-Chinese characters, stopwords, digits, and punctuations
+* Chinese word segmentation: used [jieba](https://github.com/fxsjy/jieba) for segmentation of Chinese words, e.g.,
+  我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学
 
 
 ### Bag of words + TF-idf transformer
-* TODO
+* Implemented Bag-of-Words: convert user reviews into one-hot encoding using countvectorizer() and TF-IDF transformation
+* Split user review data into training and test set
 
 ## Supervised Learning
 
