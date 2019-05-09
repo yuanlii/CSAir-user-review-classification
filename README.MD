@@ -63,8 +63,16 @@ Since probability distribution among classes varies quite a lot, it would not ma
 
 In order to avoid such cases, we decided to manually set the probability threshold in terms of deciding whether a piece of user review to be classified as positive in certain label class or not. The tricky part is, how should we set the probability threshold for label classes differently?
 
-First we would compute and get the ratios of size of each label class divided by total number of user reviews. 
+First we would compute and get "class priors" - ratios of size of each label class divided by total number of user reviews. After getting the predicted probability of each review in each class, we would use the upper-bound percentile as the threshold in deciding whether the review is classified as positive or not. Let's take an example. If there are 1700 user reviews in total and 149 reviews labeled as class 0, the class prior of such class (class 0) should be 149/561. Ideally we would want to pick reviews and label them to maintain the balance of different data size of each label. If there are 561 reviews in test data, the proportional labeled review for us to pick in test data should be approximately 561 * (149/17000).
 
+![manual_threshold](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/prob_dict_class1_manual.jpg)
+
+code extractions:
+
+``` python
+percentile = (1 - self.class_priors[i])*100
+threshold = np.percentile(class_prob, percentile) 
+```
 
 
 
