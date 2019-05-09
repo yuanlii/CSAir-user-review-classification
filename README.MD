@@ -10,11 +10,13 @@ Overall, for multiclass classification problem in general, suppose we have N cla
 
     ![multiclass classification formula](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification_formula.png)
 
+where pi(x) is the density for each of the N classes.
 
-1. vectorized method
+#### 1. vectorized method
     * use scikit learn multiclass classifier to directly predict for 10 class labels
+    * TODO: more explanation
 
-2. One-vs-All Classification
+#### 2. One-vs-All Classification
     * Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. 
 
     ![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification.png)
