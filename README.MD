@@ -20,7 +20,7 @@ User experience has been a cruicial part in contributing to a company's success.
 * Split user review data into training and test set
 
 
-## Supervised Learning
+## Supervised Learning (Build Classifier)
 
 Overall, for multiclass classification problem in general, suppose we have N classes, for each of the N classes, we would want to predict using 
 
@@ -55,7 +55,16 @@ The actual probability matrix that I managed to generate looks like below:
 ![predictive proba distribution of each label class](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_distribution_by_class(lg).png)
   
 
-* TODO: set manual threshold for proba
+* Manually set threshold for predicted probability
+
+Since probability distribution among classes varies quite a lot, it would not make sense to use the default 0.5 level to classify user review. Below is an example of the distribution of the predicted probability of label class 1 by using Logistic Regression, the majority probability lies on the left of 0.5 level. In such case, our system can hardly picked any label 1 review. 
+
+![proba dist for class1](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_dist_class1.jpg)
+
+In order to avoid such cases, we decided to manually set the probability threshold in terms of deciding whether a piece of user review to be classified as positive in certain label class or not. The tricky part is, how should we set the probability threshold for label classes differently?
+
+First we would compute and get the ratios of size of each label class divided by total number of user reviews. 
+
 
 
 
@@ -112,3 +121,6 @@ def setup_neural_net(self):
 * Inspiration
 * etc
 * [reference: Multiclass Classification - MIT](www.mit.edu/~9.520/spring09/Classes/multiclass.pdf)
+* 搜狐新闻文本分类：[机器学习大乱斗](https://www.jianshu.com/p/e21b570a6b8a)
+* [用户行为分析 用wiki百科中文语料训练word2vec模型](https://blog.csdn.net/hereiskxm/article/details/49664845)
+          
