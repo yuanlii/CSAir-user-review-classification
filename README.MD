@@ -15,7 +15,7 @@ User experience has been a cruicial part in contributing to a company's success.
 
 
 
-## Bag of words + TF-idf transformer
+## Bag of words + TF-IDF transformer
 * Implemented Bag-of-Words: convert user reviews into one-hot encoding using countvectorizer() and TF-IDF transformation
 * Split user review data into training and test set
 
@@ -75,7 +75,7 @@ threshold = np.percentile(class_prob, percentile)
 ```
 
 
-## word-embedding + word2vec
+## Word2vec 
 * used Baidu Baike (百度百科）word2vec pre-trained model
   * size: ~4.6GB
   * [download link](https://github.com/Embedding/Chinese-Word-Vectors)
@@ -114,7 +114,6 @@ def setup_neural_net(self):
     return sequence_input,preds
 ```
 
-
 ## More Exploring
 * BERT:
   * Learn [BERT](https://github.com/google-research/bert) for word embedding and train data
@@ -132,6 +131,13 @@ Plot the kmeans clustering results(by initializing 10 groups), after applied PCA
 ![K-means clustering](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/clustering_kmeans.png)
 
 
+## Acknowledgments
+* [Machine Learning — Multiclass Classification with Imbalanced Dataset](https://towardsdatascience.com/machine-learning-multiclass-classification-with-imbalanced-data-set-29f6a177c1a)
+* [reference: Multiclass Classification - MIT](www.mit.edu/~9.520/spring09/Classes/multiclass.pdf)
+* 搜狐新闻文本分类：[机器学习大乱斗](https://www.jianshu.com/p/e21b570a6b8a)
+* [用户行为分析 用wiki百科中文语料训练word2vec模型](https://blog.csdn.net/hereiskxm/article/details/49664845)
+
+
 ## Resources backup
 ### 中文语料库
 * [(译)吊炸天的中文自然语言处理工具和语料库介绍](https://mlln.cn/2018/06/02/[%E8%BD%AC]%E5%90%8A%E7%82%B8%E5%A4%A9%E7%9A%84%E4%B8%AD%E6%96%87%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7%E5%92%8C%E8%AF%AD%E6%96%99%E5%BA%93%E4%BB%8B%E7%BB%8D/)
@@ -139,10 +145,4 @@ Plot the kmeans clustering results(by initializing 10 groups), after applied PCA
 * [SentiBridge](https://github.com/rainarch/SentiBridge)
   * 关于点评资料
 
-
-## Acknowledgments
-* [Machine Learning — Multiclass Classification with Imbalanced Dataset](https://towardsdatascience.com/machine-learning-multiclass-classification-with-imbalanced-data-set-29f6a177c1a)
-* [reference: Multiclass Classification - MIT](www.mit.edu/~9.520/spring09/Classes/multiclass.pdf)
-* 搜狐新闻文本分类：[机器学习大乱斗](https://www.jianshu.com/p/e21b570a6b8a)
-* [用户行为分析 用wiki百科中文语料训练word2vec模型](https://blog.csdn.net/hereiskxm/article/details/49664845)
           
