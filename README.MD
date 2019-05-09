@@ -116,9 +116,16 @@ def setup_neural_net(self):
 
 
 ## More Exploring
-* TODO: BERT
-* TODO: semi-supervised learning 
-* TODO: unspervised learning (clustering results)
+* BERT:
+  * Learn [BERT](https://github.com/google-research/bert) for word embedding and train data
+* semi-supervised learning 
+  * using sklearn label propagation, based on all labeled data and 5000 unlabeled data
+   * applied kernel = knn and kernel = rbf (with prediction result output as csv file in res folder)
+   * files:
+    * semi_supervised.ipynb => kernel = 'knn'
+    * semi_supervised.ipynb => kernel = 'rbf'
+
+* Unspervised learning (clustering results)
 
 Plot the kmeans clustering results(by initializing 10 groups), after applied PCA and get two principal components. The diagram shows that kmeans clustering cannot very well capture the boundary of data.
 
