@@ -8,7 +8,7 @@ User experience has been a cruicial part in contributing to a company's success.
 
 Overall, for multiclass classification problem in general, suppose we have N classes, for each of the N classes, we would want to predict using 
 
-    ![multiclass classification formula](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification_formula.png)
+![multiclass classification formula](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification_formula.png)
 
 where pi(x) is the density for each of the N classes.
 
@@ -19,7 +19,7 @@ where pi(x) is the density for each of the N classes.
 #### 2. One-vs-All Classification
     * Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. 
 
-    ![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification.png)
+![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification.png)
 
 
 
