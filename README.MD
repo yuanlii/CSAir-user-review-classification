@@ -116,9 +116,13 @@ def setup_neural_net(self):
 
 
 ## More Exploring
-* BERT
-* semi-supervised learning 
-* unspervised learning (clustering results)
+* TODO: BERT
+* TODO: semi-supervised learning 
+* TODO: unspervised learning (clustering results)
+
+Plot the kmeans clustering results(by initializing 10 groups), after applied PCA and get two principal components. The diagram shows that kmeans clustering cannot very well capture the boundary of data.
+
+![K-means clustering](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/clustering_kmeans.png)
 
 
 
@@ -126,7 +130,6 @@ def setup_neural_net(self):
 
 * Hat tip to anyone whose code was used
 * Inspiration
-* etc
 * [reference: Multiclass Classification - MIT](www.mit.edu/~9.520/spring09/Classes/multiclass.pdf)
 * 搜狐新闻文本分类：[机器学习大乱斗](https://www.jianshu.com/p/e21b570a6b8a)
 * [用户行为分析 用wiki百科中文语料训练word2vec模型](https://blog.csdn.net/hereiskxm/article/details/49664845)
