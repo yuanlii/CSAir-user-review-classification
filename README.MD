@@ -15,6 +15,13 @@ where pi(x) is the density for each of the N classes.
 #### 1. vectorized method
     * use scikit learn multiclass classifier to directly predict for 10 class labels
     * TODO: more explanation
+    
+![proba_matrix_sketch]
+https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix_sketch.jpg
+
+The actual probability matrix that I managed to generate looks like below:
+![proba_matrix](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix.jpg)
+    
 
 #### 2. One-vs-All Classification
     * Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. 
