@@ -16,10 +16,10 @@ where pi(x) is the density for each of the N classes.
     * use scikit learn multiclass classifier to directly predict for 10 class labels
     * TODO: more explanation
     
-![proba_matrix_sketch]
-https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix_sketch.jpg
+![proba_matrix_sketch](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix_sketch.jpg)
 
 The actual probability matrix that I managed to generate looks like below:
+
 ![proba_matrix](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix.jpg)
     
 
