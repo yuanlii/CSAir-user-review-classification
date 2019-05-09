@@ -12,14 +12,22 @@ Overall, for multiclass classification problem in general, suppose we have N cla
 
 where pi(x) is the density for each of the N classes.
 
-#### 1. vectorized method
-    * use scikit learn multiclass classifier to directly predict for 10 class labels
-    * TODO: more explanation
+### 1. vectorized method
+* use scikit learn multiclass classifier to directly predict for 10 class labels
+* TODO: more explanation
 
-#### 2. One-vs-All Classification
-    * Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. 
+### 2. One-vs-All Classification
+* Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. 
 
 ![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification.png)
+
+After building classifier for each class, I stacked the predicted probability horizontally (column-wise). P(X,Y) is the predicted probability of review X being classified in class Y, e.g, P(0,0) is the predicted probability of review 0 being classified in class 0 (in this case, "计划“）
+
+![proba_matrix_sketch](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix_sketch.jpg)
+
+The actual probability matrix that I managed to generate looks like below:
+![proba_matrix](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix.jpg)
+
 
 
 
