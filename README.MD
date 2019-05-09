@@ -52,7 +52,7 @@ The actual probability matrix that I managed to generate looks like below:
 * distribution of predicted probability in each label class
   * with the chosen modeling method, e.g., Logistic Regression, SVC, Multinomial NB, etc., we can get the predictive probability distribution of each label class. An example is given below:
 
-![predictive proba distribution of each label class](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_distribution_by_class(lg).png)
+![predictive proba distribution of each label class](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_distribution_by_class_lg.png)
   
 
 * Manually set threshold for predicted probability
