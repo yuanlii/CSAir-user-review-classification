@@ -4,10 +4,10 @@
 
 User experience has been a cruicial part in contributing to a company's success. Partnered with China Southern Airline, we aim to build a auto-classifier that can successfully classify user reviews into 10 differernt labels, which are associated with different functional teams of the company. User reviews for this project are collected across a wide range of digital platforms, including iOS app store, Google Play App, Huawei App store as well as user reviews collected directly from its own released app. Classifiers built for this project will be integrated into the company's operation, in order to gain better understanding of customer needs and provide insights for the company's next step improvement.
 
-### Data Preprocessing
+## Data Preprocessing
 * loaded user review data from separate txt files, and concatenated them into one single data file
 * data cleaning: remove non-Chinese characters, stopwords, digits, and punctuations
-* Chinese word segmentation: used [jieba](https://github.com/fxsjy/jieba) for segmentation of Chinese words, e.g.,
+* Chinese word segmentation: used [Jieba 结巴中文分词](https://github.com/fxsjy/jieba) for segmentation of Chinese words, e.g.,
   我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学
 * exploratory data analysis: distribution among the 10 labels, we can tell certain unbalance exists
 
@@ -15,7 +15,7 @@ User experience has been a cruicial part in contributing to a company's success.
 
 
 
-### Bag of words + TF-idf transformer
+## Bag of words + TF-idf transformer
 * Implemented Bag-of-Words: convert user reviews into one-hot encoding using countvectorizer() and TF-IDF transformation
 * Split user review data into training and test set
 
@@ -49,9 +49,60 @@ After building binary classifier for each class, I stacked the predicted probabi
 The actual probability matrix that I managed to generate looks like below: 
 ![proba_matrix](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_matrix.jpg)
 
+* distribution of predicted probability in each label class
+  * with the chosen modeling method, e.g., Logistic Regression, SVC, Multinomial NB, etc., we can get the predictive probability distribution of each label class. An example is given below:
+
+![predictive proba distribution of each label class](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/proba_distribution_by_class(lg).png)
+  
+
+* TODO: set manual threshold for proba
+
+
 
 ## word-embedding + word2vec
-* TODO
+* used Baidu Baike (百度百科）word2vec pre-trained model
+  * size: ~4.6GB
+  * [download link](https://github.com/Embedding/Chinese-Word-Vectors)
+
+* built word embedding matrix leveraging Baidu Baike pretrained word vectors
+* incorporated inforation from embedding mastrix and added embedding layer in CNN model 
+  * used Relu activation for multiple layers in CNN, and softmax activation for the last layer since we have more than 2 classes to classify
+  * used categorical_crossentropy as loss function
+
+code extractions:
+
+```python
+def setup_neural_net(self):
+    # get word embedding matrix
+    self.embedding_matrix = self.get_embedding_matrix()
+
+    # 将这个词向量矩阵加载到Embedding层
+    embedding_layer = Embedding(len(self.word_index) + 1,
+                                self.EMBEDDING_DIM,
+                                weights=[self.embedding_matrix],
+                                input_length=self.MAX_SEQUENCE_LENGTH,
+                                trainable=False)
+
+    # 使用一个小型的1D卷积解决分类问题
+    sequence_input = Input(shape=(self.MAX_SEQUENCE_LENGTH,), dtype='int32')
+    embedded_sequences = embedding_layer(sequence_input)
+    x = Conv1D(128, 5, activation='relu')(embedded_sequences)
+    x = MaxPooling1D(5)(x)
+    x = Conv1D(128, 5, activation='relu')(x)
+    x = MaxPooling1D(5)(x)
+    x = Conv1D(128, 5, activation='relu')(x)
+    x = MaxPooling1D(35)(x)  # global max pooling
+    x = Flatten()(x)
+    x = Dense(128, activation='relu')(x)
+    preds = Dense(len(self.labels_index), activation='softmax')(x)
+    return sequence_input,preds
+```
+
+
+## More Exploring
+* BERT
+* semi-supervised learning 
+* unspervised learning (clustering results)
 
 
 
