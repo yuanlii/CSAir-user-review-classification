@@ -7,6 +7,7 @@ User experience has been a cruicial part in contributing to a company's success.
 ## Supervised Learning
 
 Overall, for multiclass classification problem in general, suppose we have N classes, for each of the N classes, we would want to predict using 
+
     ![multiclass classification formula](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification_formula.png)
 
 
@@ -14,7 +15,7 @@ Overall, for multiclass classification problem in general, suppose we have N cla
     * use scikit learn multiclass classifier to directly predict for 10 class labels
 
 2. One-vs-All Classification
-    * Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. [reference: Multiclass Classification - MIT](www.mit.edu/~9.520/spring09/Classes/multiclass.pdf)
+    * Build N (in our case is 10) different binary classifiers. For the ith classifier, let the positive examples be all the points in class i, and let the negative examples be all the points not in class i. 
 
     ![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_classification.png)
 
@@ -25,3 +26,4 @@ Overall, for multiclass classification problem in general, suppose we have N cla
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
+* [reference: Multiclass Classification - MIT](www.mit.edu/~9.520/spring09/Classes/multiclass.pdf)
