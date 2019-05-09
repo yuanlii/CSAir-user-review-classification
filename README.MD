@@ -67,7 +67,7 @@ First we would compute and get "class priors" - ratios of size of each label cla
 
 ![manual_threshold](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/prob_dict_class1_manual.jpg)
 
-code extractions for manually setting threshold:
+code extractions for manually setting threshold: (more please see prepare_data.py)
 
 ``` python
 percentile = (1 - self.class_priors[i])*100
