@@ -37,6 +37,8 @@ where pi(x) is the density for each of the N classes.
 
 ![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_screenshot.png)
 
+_(screenshot of Andrew Ng Machine Learning course in Coursera)_
+
 * Building binary classifier for each label class
   * use Grid Search and Cross Validation for model selection
    * single modeling method + multiple hyperparameter tuning (with demonstrative best performance for each label class); an example is shown below, in which I chose SVC for modeling method.
@@ -136,10 +138,11 @@ Plot the kmeans clustering results(by initializing 10 groups), after applied PCA
 * [reference: Multiclass Classification - MIT](www.mit.edu/~9.520/spring09/Classes/multiclass.pdf)
 * 搜狐新闻文本分类：[机器学习大乱斗](https://www.jianshu.com/p/e21b570a6b8a)
 * [用户行为分析 用wiki百科中文语料训练word2vec模型](https://blog.csdn.net/hereiskxm/article/details/49664845)
+* [Andrew Ng Coursera Machine Learning](https://www.youtube.com/watch?v=ZvaELFv5IpM)
 
 
 ## Resources backup
-### 中文语料库
+Potential pretrained Chinese word embedding that can be used:
 * [(译)吊炸天的中文自然语言处理工具和语料库介绍](https://mlln.cn/2018/06/02/[%E8%BD%AC]%E5%90%8A%E7%82%B8%E5%A4%A9%E7%9A%84%E4%B8%AD%E6%96%87%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7%E5%92%8C%E8%AF%AD%E6%96%99%E5%BA%93%E4%BB%8B%E7%BB%8D/)
   * 介绍各种中文语料库
 * [SentiBridge](https://github.com/rainarch/SentiBridge)
