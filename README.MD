@@ -177,6 +177,7 @@ Plot the kmeans clustering results(by initializing 10 groups), after applied PCA
 * [Andrew Ng Coursera Machine Learning](https://www.youtube.com/watch?v=ZvaELFv5IpM)
 * [基于Text-CNN模型的中文文本分类实战](https://www.imooc.com/article/40868)
 * [tutorial on using pretrained model to build word embedding](https://github.com/keras-team/keras/blob/master/examples/pretrained_word_embeddings.py)
+* [Tensorflow使用CNN卷积神经网络以及RNN(Lstm、Gru)循环神经网络进行中文文本分类](https://blog.csdn.net/duan_zhihua/article/details/85121310)
 
 
 ## Resources backup
