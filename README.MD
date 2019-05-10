@@ -115,6 +115,33 @@ def setup_neural_net(self):
     preds = Dense(len(self.labels_index), activation='softmax')(x)
     return sequence_input,preds
 ```
+## FastText
+* use FastText pretrained model to build word embedding
+  * try using pre-trained model downloaded from [official page](https://fasttext.cc/docs/en/crawl-vectors.html)
+  * [fastText documentation](fasttext documentation: https://github.com/facebookresearch/fastText)
+  * Steps to use fastText:
+   * set up fasttext environment
+   ```python 
+   import logging
+   import fastText
+   logging.basicConfig(format='%(asctime)s :%(levelname)s : %(message)s', level=logging.INFO)
+   ```
+   * build fasttext model:
+   ```python
+   model = FastText(size=4, window=3, min_count=1) # instantiate
+   model.build_vocab(sentences=data.review_tokens.values)
+   model.train(sentences=data.review_tokens.values, total_examples=len(data.review_tokens.values), epochs=10)
+   ```
+   * alternative way to build fasttext model:
+   ```python
+    # need to convert reviews into comma-separated format => fit into fasttext format
+    list(data.review_tokens.values)
+    review_tokens = [review.split() for review in list(data.review_tokens.values)]
+    model_ted = FastText(review_tokens, size=100, window=5, min_count=5, workers=4,sg=1)
+    model_ted.wv.vocab
+    # e.g., model_ted.wv['行李箱']
+   ```
+  
 
 ## More Exploring
 * BERT:
