@@ -37,7 +37,7 @@ where pi(x) is the density for each of the N classes.
 
 ![Andrew Ng Machine Learning course screenshot](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/multiclass_screenshot.png)
 
-_(screenshot of Andrew Ng Machine Learning course in Coursera)_
+_(screenshot from Andrew Ng Machine Learning course in Coursera)_
 
 * Building binary classifier for each label class
   * use Grid Search and Cross Validation for model selection
