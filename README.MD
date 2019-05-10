@@ -151,6 +151,8 @@ def setup_neural_net(self):
 ## More Exploring
 
 * BERT - Learn [BERT](https://github.com/google-research/bert) for word embedding and train data
+  * [BERT_Chinese_Classification](https://github.com/renxingkai/BERT_Chinese_Classification/blob/master/run_classifier.py)
+  * [干货 | BERT fine-tune 终极实践教程](https://www.jianshu.com/p/aa2eff7ec5c1)
 
 * semi-supervised learning 
   * using [scikit learn label propagation](https://scikit-learn.org/stable/modules/label_propagation.html), based on all labeled data and 5000 unlabeled data
@@ -173,6 +175,8 @@ Plot the kmeans clustering results(by initializing 10 groups), after applied PCA
 * 搜狐新闻文本分类：[机器学习大乱斗](https://www.jianshu.com/p/e21b570a6b8a)
 * [用户行为分析 用wiki百科中文语料训练word2vec模型](https://blog.csdn.net/hereiskxm/article/details/49664845)
 * [Andrew Ng Coursera Machine Learning](https://www.youtube.com/watch?v=ZvaELFv5IpM)
+* [基于Text-CNN模型的中文文本分类实战](https://www.imooc.com/article/40868)
+* [tutorial on using pretrained model to build word embedding](https://github.com/keras-team/keras/blob/master/examples/pretrained_word_embeddings.py)
 
 
 ## Resources backup
