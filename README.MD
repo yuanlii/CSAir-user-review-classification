@@ -124,19 +124,20 @@ def setup_neural_net(self):
   * try using pre-trained model downloaded from [official page](https://fasttext.cc/docs/en/crawl-vectors.html)
   * [fastText documentation](https://github.com/facebookresearch/fastText)
   * Steps to use fastText:
-   * set up fasttext environment
+  
+   1. set up fasttext environment
    ```python 
    import logging
    import fastText
    logging.basicConfig(format='%(asctime)s :%(levelname)s : %(message)s', level=logging.INFO)
    ```
-   * build fasttext model:
+   2. build fasttext model:
    ```python
    model = FastText(size=4, window=3, min_count=1) # instantiate
    model.build_vocab(sentences=data.review_tokens.values)
    model.train(sentences=data.review_tokens.values, total_examples=len(data.review_tokens.values), epochs=10)
    ```
-   * alternative way to build fasttext model:
+   3. alternative way to build fasttext model:
    ```python
     # need to convert reviews into comma-separated format => fit into fasttext format
     list(data.review_tokens.values)
