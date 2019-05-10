@@ -118,7 +118,7 @@ def setup_neural_net(self):
 ## FastText
 * use FastText pretrained model to build word embedding
   * try using pre-trained model downloaded from [official page](https://fasttext.cc/docs/en/crawl-vectors.html)
-  * [fastText documentation](fasttext documentation: https://github.com/facebookresearch/fastText)
+  * [fastText documentation](https://github.com/facebookresearch/fastText)
   * Steps to use fastText:
    * set up fasttext environment
    ```python 
