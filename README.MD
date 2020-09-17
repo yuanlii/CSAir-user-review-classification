@@ -77,7 +77,7 @@ threshold = np.percentile(class_prob, percentile)
 ```
 
 #### 4. Try Overampling to handle imbalance of data 
-* TODO
+
 
 
 
@@ -165,7 +165,6 @@ Plot the kmeans clustering results(by initializing 10 groups), after applied PCA
 ![K-means clustering](https://github.com/yuanlii/CSAir_user_review_classification/blob/master/images/clustering_kmeans.png)
 
 ## Proposed Next Step 
-* TODO
 
 
 ## Acknowledgments
